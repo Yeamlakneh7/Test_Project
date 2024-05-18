@@ -1,51 +1,44 @@
 // src/features/songs/songsSaga.js
-import { call, put, takeEvery } from 'redux-saga/effects';
-import axios from 'axios';
+import { takeEvery, call, put } from 'redux-saga/effects';
+import { ADD_SONG_REQUEST, UPDATE_SONG_REQUEST, DELETE_SONG_REQUEST } from './songsActionTypes'; // Add this import statement
 import { songAdded, songUpdated, songDeleted } from './songsSlice';
+import axios from 'axios';
+import { setError, clearError } from './songsSlice';
 
-const API_URL = 'https://jsonplaceholder.typicode.com/posts';
-
-function* fetchSongs() {
-  try {
-    const response = yield call(axios.get, API_URL);
-    yield put({ type: 'songs/fetchSuccess', payload: response.data });
-  } catch (error) {
-    console.error('Error fetching songs:', error);
-  }
-}
+let nextId = 1;
 
 function* addSong(action) {
-  try {
-    const response = yield call(axios.post, API_URL, action.payload);
-    yield put(songAdded(response.data));
-  } catch (error) {
-    console.error('Error adding song:', error);
+    try {
+      // add song logic...
+    } catch (e) {
+      yield put(setError('Failed to add song.'));
+      console.error(e);
+    } finally {
+      yield put(clearError());
+    }
   }
-}
-
 function* updateSong(action) {
   try {
-    const response = yield call(axios.put, `${API_URL}/${action.payload.id}`, action.payload);
+    const response = yield call(axios.put, `http://localhost:3001/songs/${action.payload.id}`, action.payload);
     yield put(songUpdated(response.data));
-  } catch (error) {
-    console.error('Error updating song:', error);
+  } catch (e) {
+    console.error(e);
   }
 }
 
 function* deleteSong(action) {
   try {
-    yield call(axios.delete, `${API_URL}/${action.payload}`);
+    yield call(axios.delete, `http://localhost:3001/songs/${action.payload}`);
     yield put(songDeleted(action.payload));
-  } catch (error) {
-    console.error('Error deleting song:', error);
+  } catch (e) {
+    console.error(e);
   }
 }
 
 function* songsSaga() {
-  yield takeEvery('songs/fetchRequest', fetchSongs);
-  yield takeEvery('songs/addRequest', addSong);
-  yield takeEvery('songs/updateRequest', updateSong);
-  yield takeEvery('songs/deleteRequest', deleteSong);
+  yield takeEvery(ADD_SONG_REQUEST, addSong); // Use the imported action types here
+  yield takeEvery(UPDATE_SONG_REQUEST, updateSong); // Use the imported action types here
+  yield takeEvery(DELETE_SONG_REQUEST, deleteSong); // Use the imported action types here
 }
 
 export default songsSaga;

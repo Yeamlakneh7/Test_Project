@@ -1,19 +1,32 @@
-/** @jsxImportSource @emotion/react */
+// src/Components/EditSong.js
+
 import { css } from '@emotion/react';
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { songUpdated } from '../features/songs/songsSlice'; // Import the action creator
 
 const formStyle = css`
   display: flex;
   flex-direction: column;
   max-width: 300px;
-  margin: 10px 0;
+  margin: 10px auto;
+`;
 
-  input, button {
-    margin: 5px 0;
-    padding: 8px;
-    border: 1px solid #ddd;
-  }
+const inputStyle = css`
+  margin: 5px 0;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+`;
+
+const buttonStyle = css`
+  margin: 5px 0;
+  padding: 8px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 `;
 
 const EditSong = ({ selectedSong, onEditComplete }) => {
@@ -28,19 +41,20 @@ const EditSong = ({ selectedSong, onEditComplete }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: 'songs/updateRequest', payload: { ...selectedSong, title } });
+    dispatch(songUpdated({ ...selectedSong, title })); // Dispatch the action using the action creator
     onEditComplete();
   };
 
   return (
     <form css={formStyle} onSubmit={handleSubmit}>
       <input
+        css={inputStyle}
         type="text"
         placeholder="Song Title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-      <button type="submit">Update Song</button>
+      <button css={buttonStyle} type="submit">Update Song</button>
     </form>
   );
 };
