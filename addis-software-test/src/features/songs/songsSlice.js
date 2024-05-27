@@ -23,7 +23,6 @@ const songsSlice = createSlice({
     songDeleted: (state, action) => {
       state.songs = state.songs.filter(song => song.id !== action.payload);
     },
-    // Add setError and clearError reducers here
     setError: (state, action) => {
       state.error = action.payload;
     },

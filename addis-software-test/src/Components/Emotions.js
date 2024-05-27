@@ -1,40 +1,3 @@
-//  import { configureStore, createSlice } from '@reduxjs/toolkit' 
-
-// const counterSlice = createSlice({
-//     name: 'counter', 
-//     initialState : {
-//         value: 0
-//     }, 
-//     reducers: {
-//         increment: x => {
-//             x.value += 1;
-//         }, 
-//         decreament: y => {
-//             y.value -= 1;
-//         }
-//     }
-// })
-
-// export const {increment, decreament} = counterSlice.actions;
-
-// const store = configureStore({
-//   reducer: configureStore.reducer;   
-// })
-
-// store.dispatch(increment)
-
-
-
-
-
-
-
-
-
-
-
-
-
 import { css } from '@emotion/css';
 
 export const styles = {
@@ -77,6 +40,15 @@ export const styles = {
     border-radius: 4px;
     cursor: pointer;
   `, 
+  buttonStyle2 : css`
+    margin-left: auto;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+`,
   formStyle: css`
     display: flex;
     flex-direction: column;
@@ -90,6 +62,12 @@ export const styles = {
     padding: 0;
     margin: 20px 0;
   `,
+  listStyle2 : css`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 30px;
+`,
 
   itemStyle : css`
     display: flex;
@@ -129,14 +107,63 @@ export const styles = {
     margin: 0;
     color: white;
     cursor: pointer;
-    
+    text-decoration: none;
+
     &:hover {
       color: #ddd;
     }
   `, 
   logo : css`
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    `
+    width: 50px;
+    height: 50px;
+  `,
+
+  cardStyle : css`
+    width: 200px;
+    margin: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`, 
+
+  image : css`
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+`,
+  infoStyle: css`
+    padding: 10px;
+    text-align: center;
+  `,
+  
+
+  // for details
+  detailsContainerStyle: css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  `,
+
+  imageStyle : css`
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  `,
+
+  titleStyle : css`
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  `,
+
+  artistStyle : css`
+    font-size: 18px;
+    color: #555;
+  `
   }
