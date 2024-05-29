@@ -1,5 +1,4 @@
 // src/Components/EditSong.js
-
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { songUpdated } from '../features/songs/songsSlice'; // Import the action creator
@@ -18,7 +17,9 @@ const EditSong = ({ selectedSong, onEditComplete }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(songUpdated({ ...selectedSong, title })); // Dispatch the action using the action creator
-    onEditComplete();
+    if (onEditComplete) {
+      onEditComplete();
+    }
   };
 
   return (
