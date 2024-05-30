@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { songDeleted } from '../features/songs/songsSlice';
 import { styles } from './Emotions';
 
-const SongItems = ({ id, img, title, artist, onEdit }) => {
+const SongItems = ({ id, img, title, artist }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ const SongItems = ({ id, img, title, artist, onEdit }) => {
 
   const handleEdit = (e) => {
     e.stopPropagation(); // Prevents the event from bubbling up to the parent
-    onEdit();
+    navigate('/edit/' + id);
   };
 
   const handleClick = () => {
