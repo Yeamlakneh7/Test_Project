@@ -1,5 +1,3 @@
-// src/pages/SongDetails.js
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -18,6 +16,12 @@ const SongDetails = () => {
       <img className={styles.imageStyle} src={song.img} alt={song.title} />
       <h2 className={styles.titleStyle}>♫ {song.title}</h2>
       <p className={styles.artistStyle}>🎸 {song.artist}</p>
+      {song.audioUrl && (
+        <audio controls>
+          <source src={song.audioUrl} type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
+      )}
     </div>
   );
 };

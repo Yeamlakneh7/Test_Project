@@ -6,16 +6,12 @@ import EditSong from '../pages/EditSong'; // Import the EditSong component
 import { styles } from './Emotions';
 
 const SongList = () => {
-  const [editingSong, setEditingSong] = useState(null);
   const songs = useSelector(state => state.songs.songs);
+  const status = useSelector(state => state.songs.status);
 
-  const handleEdit = (song) => {
-    setEditingSong(song);
-  };
-
-  const handleEditComplete = () => {
-    setEditingSong(null);
-  };
+  if (status === 'loading') {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className={styles.listStyle2}>
@@ -26,16 +22,8 @@ const SongList = () => {
           img={song.img}
           title={song.title}
           artist={song.artist}
-          onEdit={() => handleEdit(song)}
         />
       ))}
-
-      {editingSong && (
-        <EditSong
-          selectedSong={editingSong}
-          onEditComplete={handleEditComplete}
-        />
-      )}
     </div>
   );
 };

@@ -102,6 +102,7 @@ export const styles = {
   h4style : css`
     margin: 0;
     color: white;
+    text-decoration: none
   `,
   h5style: css`
     margin: 0;
@@ -138,7 +139,6 @@ export const styles = {
     padding: 10px;
     text-align: center;
   `,
-  
 
   // for details
   detailsContainerStyle: css`
@@ -157,13 +157,14 @@ export const styles = {
   `,
 
   titleStyle : css`
-    font-size: 24px;
+    font-size: 19px;
     font-weight: bold;
     color: #333;
   `,
 
   artistStyle : css`
-    font-size: 18px;
+    font-size: 16px;
     color: #555;
+    margin: 5px
   `
   }

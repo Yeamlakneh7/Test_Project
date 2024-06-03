@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { songUpdated } from '../features/songs/songsSlice'; // Import the action creator
+import { songUpdated } from '../features/songs/songsSlice';
 import { styles } from '../Components/Emotions';
 
 const EditSong = ({ onEditComplete }) => {
@@ -14,26 +14,28 @@ const EditSong = ({ onEditComplete }) => {
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
   const [img, setImg] = useState('');
+  const [audioUrl, setAudioUrl] = useState(''); // Add audio URL state
 
   useEffect(() => {
     if (song) {
       setTitle(song.title);
       setArtist(song.artist);
       setImg(song.img);
+      setAudioUrl(song.audioUrl); // Set audio URL
     }
   }, [song]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(songUpdated({ id, title, artist, img })); // Dispatch the action using the action creator
+    dispatch(songUpdated({ id, title, artist, img, audioUrl }));
     if (onEditComplete) {
       onEditComplete();
     }
-    navigate('/'); // Navigate back to the song list
+    navigate('/');
   };
 
   if (!song) {
-    return <p>Loading...</p>;
+    return <p>Enter Id number of your music.</p>;
   }
 
   return (
@@ -58,6 +60,13 @@ const EditSong = ({ onEditComplete }) => {
         placeholder="Image URL"
         value={img}
         onChange={(e) => setImg(e.target.value)}
+      />
+      <input
+        className={styles.inputStyle}
+        type="text"
+        placeholder="Audio URL"
+        value={audioUrl}
+        onChange={(e) => setAudioUrl(e.target.value)}
       />
       <button className={styles.buttonStyle} type="submit">Update Song</button>
     </form>

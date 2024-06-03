@@ -1,21 +1,20 @@
-// src/Components/SongItems.js
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { songDeleted } from '../features/songs/songsSlice';
 import { styles } from './Emotions';
 
-const SongItems = ({ id, img, title, artist }) => {
+const SongItems = ({ id, img, title, artist, audioUrl }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleRemove = (e) => {
-    e.stopPropagation(); // Prevents the event from bubbling up to the parent
+    e.stopPropagation();
     dispatch(songDeleted(id));
   };
 
   const handleEdit = (e) => {
-    e.stopPropagation(); // Prevents the event from bubbling up to the parent
+    e.stopPropagation();
     navigate('/edit/' + id);
   };
 
@@ -29,10 +28,18 @@ const SongItems = ({ id, img, title, artist }) => {
         <img className={styles.image} src={img} alt={title} />
       </div>
       <div className={styles.infoStyle}>
-        <h2>♫ {title}</h2>
-        <p>🎸 {artist}</p>
-        <button className={styles.buttonStyle2} onClick={handleEdit}>Edit</button>
-        <button className={styles.buttonStyle2} onClick={handleRemove}>Remove</button>
+        <div className={styles.titleStyle}>♫ {title}</div>
+        <div className={styles.artistStyle}>🎸 {artist}</div>
+        <div>
+          <button className={styles.buttonStyle2} onClick={handleEdit}>Edit</button>
+          <button className={styles.buttonStyle2} onClick={handleRemove}>Delete</button>
+          {audioUrl && (
+            <audio controls className={styles.cardStyle}>
+              <source src={audioUrl} type="audio/mpeg" />
+              Your browser does not support the audio element.
+            </audio>
+          )}
+        </div>
       </div>
     </div>
   );

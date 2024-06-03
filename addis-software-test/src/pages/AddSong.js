@@ -1,21 +1,22 @@
-// src/Components/AddSong.js
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { songAdded } from '../features/songs/songsSlice'; // Import the action creator
-import { styles } from "../Components/Emotions"
+import { songAdded } from '../features/songs/songsSlice';
+import { styles } from '../Components/Emotions';
 
 const AddSong = () => {
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
   const [img, setImg] = useState('');
+  const [audioUrl, setAudioUrl] = useState('');
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(songAdded({ title, artist, img })); // Dispatch the action using the action creator
+    dispatch(songAdded({ title, artist, img, audioUrl }));
     setTitle('');
     setArtist('');
     setImg('');
+    setAudioUrl('');
   };
 
   return (
@@ -41,6 +42,13 @@ const AddSong = () => {
           placeholder="Image URL"
           value={img}
           onChange={(e) => setImg(e.target.value)}
+        />
+        <input
+          className={styles.inputStyle}
+          type="text"
+          placeholder="Audio URL"
+          value={audioUrl}
+          onChange={(e) => setAudioUrl(e.target.value)}
         />
         <button className={styles.buttonStyle} type="submit">Add Song</button>
       </form>

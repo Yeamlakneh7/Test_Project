@@ -2,6 +2,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { v4 as uuidv4 } from 'uuid';
 
+// src/features/songs/songsSlice.js
 const initialState = {
   songs: [],
   status: 'idle',
@@ -30,9 +31,12 @@ const songsSlice = createSlice({
     },
     clearError: (state) => {
       state.error = null;
+    },
+    setLoading: (state) => {
+      state.status = 'loading';
     }
   }
 });
 
-export const { songAdded, songUpdated, songDeleted, setError, clearError } = songsSlice.actions;
+export const { songAdded, songUpdated, songDeleted, setError, clearError, setLoading } = songsSlice.actions;
 export default songsSlice.reducer;
