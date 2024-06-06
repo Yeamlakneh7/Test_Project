@@ -1,6 +1,7 @@
+// src/Components/AddSong.js
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { songAdded } from '../features/songs/songsSlice';
+import { addSong } from '../features/songs/songsSlice';  // Import the addSong action
 import { styles } from '../Components/Emotions';
 
 const AddSong = () => {
@@ -12,11 +13,20 @@ const AddSong = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(songAdded({ title, artist, img, audioUrl }));
+    if(!title) {
+      alert("Enter Title of Music")
+      return
+    }
+    else if (!artist) {
+      alert("Enter Artist's name")
+      return
+    }
+    dispatch(addSong({ title, artist, img, audioUrl }));  // Dispatch the addSong action
     setTitle('');
     setArtist('');
     setImg('');
     setAudioUrl('');
+
   };
 
   return (

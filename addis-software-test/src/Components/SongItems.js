@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { songDeleted } from '../features/songs/songsSlice';
+import { deleteSong } from '../features/songs/songsSlice';
 import { styles } from './Emotions';
 
 const SongItems = ({ id, img, title, artist, audioUrl }) => {
@@ -10,7 +10,7 @@ const SongItems = ({ id, img, title, artist, audioUrl }) => {
 
   const handleRemove = (e) => {
     e.stopPropagation();
-    dispatch(songDeleted(id));
+    dispatch(deleteSong(id));
   };
 
   const handleEdit = (e) => {

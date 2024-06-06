@@ -1,13 +1,18 @@
 // src/Components/SongList.js
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import SongItems from './SongItems';
-import EditSong from '../pages/EditSong'; // Import the EditSong component
+import { fetchSongs } from '../features/songs/songsSlice';
 import { styles } from './Emotions';
 
 const SongList = () => {
+  const dispatch = useDispatch();
   const songs = useSelector(state => state.songs.songs);
   const status = useSelector(state => state.songs.status);
+
+  useEffect(() => {
+    dispatch(fetchSongs());
+  }, [dispatch]);
 
   if (status === 'loading') {
     return <p>Loading...</p>;

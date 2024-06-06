@@ -1,0 +1,44 @@
+{
+  "songs": [
+    {
+      "id": "1676057071714",
+      "title": "Lose Your Self",
+      "artist": "ochacha",
+      "img": "https://i.ebayimg.com/images/g/CpkAAOSwiS9iDGL7/s-l500.png"
+    },
+    {
+      "id": "1676553104204",
+      "title": "we won together",
+      "artist": "Humility",
+      "img": "https://i.pinimg.com/564x/cc/65/5f/cc655f4c3791ee1b0b2e5867ddf6b036.jpg"
+    },
+    {
+      "id": "0bcc046b-8c2c-4b61-9956-2c65ab8b838d",
+      "title": "Sinegam Simeshm",
+      "artist": "Samuel Mersha",
+      "img": "https://i.pinimg.com/564x/cc/65/5f/cc655f4c3791ee1b0b2e5867ddf6b036.jpg",
+      "audioUrl": ""
+    },
+    {
+      "id": "7328ab00-a6d4-4409-a900-4346451708ed",
+      "title": "",
+      "artist": "",
+      "img": "",
+      "audioUrl": ""
+    },
+    {
+      "id": "74f2ae67-769b-4bbf-9483-b4dd205d9fb3",
+      "title": "",
+      "artist": "",
+      "img": "",
+      "audioUrl": ""
+    },
+    {
+      "id": "3aaa3f05-ad7a-49f0-b010-40dcb05c4fc9",
+      "title": "ochale",
+      "artist": "",
+      "img": "",
+      "audioUrl": ""
+    }
+  ]
+}

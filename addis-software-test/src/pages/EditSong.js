@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { songUpdated } from '../features/songs/songsSlice';
+import { updateSong } from '../features/songs/songsSlice'; // Import the updateSong action
 import { styles } from '../Components/Emotions';
 
 const EditSong = ({ onEditComplete }) => {
@@ -27,7 +27,7 @@ const EditSong = ({ onEditComplete }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(songUpdated({ id, title, artist, img, audioUrl }));
+    dispatch(updateSong({ id, title, artist, img, audioUrl }));
     if (onEditComplete) {
       onEditComplete();
     }
