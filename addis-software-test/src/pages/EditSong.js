@@ -14,7 +14,8 @@ const EditSong = ({ onEditComplete }) => {
   const [title, setTitle] = useState('');
   const [artist, setArtist] = useState('');
   const [img, setImg] = useState('');
-  const [audioUrl, setAudioUrl] = useState(''); // Add audio URL state
+  const [audioUrl, setAudioUrl] = useState('');
+  const [error, setError] = useState({}); // Add audio URL state
 
   useEffect(() => {
     if (song) {
@@ -27,6 +28,16 @@ const EditSong = ({ onEditComplete }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newError = {};
+    if (!title) newError.title = "Music title required";
+    if (!artist) newError.artist = "Artist name required";
+    if (!img) newError.img = "Cover image required";
+    if (!audioUrl) newError.audioUrl = "Audio URL required";
+    
+    setError(newError);
+
+    if (Object.keys(newError).length > 0) return;
+
     dispatch(updateSong({ id, title, artist, img, audioUrl }));
     if (onEditComplete) {
       onEditComplete();
@@ -47,6 +58,7 @@ const EditSong = ({ onEditComplete }) => {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
+      {error.title && <p className={ styles.red }>{error.title}</p>}
       <input
         className={styles.inputStyle}
         type="text"
@@ -54,6 +66,7 @@ const EditSong = ({ onEditComplete }) => {
         value={artist}
         onChange={(e) => setArtist(e.target.value)}
       />
+      {error.artist && <p className={styles.red}>{error.artist}</p>}
       <input
         className={styles.inputStyle}
         type="text"
@@ -61,6 +74,7 @@ const EditSong = ({ onEditComplete }) => {
         value={img}
         onChange={(e) => setImg(e.target.value)}
       />
+      {error.img && <p className={styles.red}>{error.img}</p>}
       <input
         className={styles.inputStyle}
         type="text"
@@ -68,6 +82,7 @@ const EditSong = ({ onEditComplete }) => {
         value={audioUrl}
         onChange={(e) => setAudioUrl(e.target.value)}
       />
+      {error.audioUrl && <p className={styles.red}>{error.audioUrl}</p>}
       <button className={styles.buttonStyle} type="submit">Update Song</button>
     </form>
   );

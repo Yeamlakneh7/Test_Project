@@ -42,7 +42,7 @@ const AddSong = () => {
     setArtist('');
     setImg('');
     setAudioUrl('');
-
+    setError({});
   };
 
   return (
