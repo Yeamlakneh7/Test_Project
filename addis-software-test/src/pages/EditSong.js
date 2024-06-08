@@ -1,4 +1,4 @@
-// src/Components/EditSong.js
+// src/Pages/EditSong.js
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';

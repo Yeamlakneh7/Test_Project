@@ -1,3 +1,5 @@
+//src/components/Emotion.js
+
 import { css } from '@emotion/css';
 
 export const styles = {
@@ -166,5 +168,10 @@ export const styles = {
     font-size: 16px;
     color: #555;
     margin: 5px
-  `
+  `,
+  
+  red : css`
+  color: red
+`
+
   }
