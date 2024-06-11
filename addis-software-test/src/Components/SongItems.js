@@ -2,7 +2,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { deleteSong } from '../features/songs/songsSlice';
+import { DELETE_SONG_REQUEST } from '../features/songs/songsActionTypes';
 import { styles } from './Emotions';
 
 const SongItems = ({ id, img, title, artist, audioUrl }) => {
@@ -11,7 +11,7 @@ const SongItems = ({ id, img, title, artist, audioUrl }) => {
 
   const handleRemove = (e) => {
     e.stopPropagation();
-    dispatch(deleteSong(id));
+    dispatch({ type: DELETE_SONG_REQUEST, payload: id });
   };
 
   const handleEdit = (e) => {

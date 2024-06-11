@@ -1,7 +1,7 @@
 // src/Pages/AddSong.js
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addSong } from '../features/songs/songsSlice';  // Import the addSong action
+import { ADD_SONG_REQUEST } from '../features/songs/songsActionTypes'; // Import the ADD_SONG_REQUEST action type
 import { styles } from '../Components/Emotions';
 
 const AddSong = () => {
@@ -17,18 +17,11 @@ const AddSong = () => {
     const newError = {}
     if (!title) {
       newError.title = "Music title required"
-      
-    }
-    else if (!artist) {
-      newError.artist = "Artist name required"
-      
-    }
-    else if (!img) {
+    }else if (!artist) {
+      newError.artist = "Artist name required" 
+    }else if (!img) {
       newError.img = "Cover image required"
-    }
-
-    else if (!audioUrl) {
-      
+    }else if (!audioUrl) { 
       newError.audioUrl = "audioUrl required"
     }
 
@@ -37,7 +30,7 @@ const AddSong = () => {
     if (Object.keys(newError).length > 0) {
       return;
     }
-    dispatch(addSong({ title, artist, img, audioUrl }));  // Dispatch the addSong action
+    dispatch({ type: ADD_SONG_REQUEST, payload: { title, artist, img, audioUrl } }); // Dispatch the ADD_SONG_REQUEST action
     setTitle('');
     setArtist('');
     setImg('');

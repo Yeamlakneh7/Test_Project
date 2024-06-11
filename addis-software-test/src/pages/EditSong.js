@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { updateSong } from '../features/songs/songsSlice'; // Import the updateSong action
+import { UPDATE_SONG_REQUEST } from '../features/songs/songsActionTypes';
 import { styles } from '../Components/Emotions';
 
 const EditSong = ({ onEditComplete }) => {
@@ -38,7 +38,8 @@ const EditSong = ({ onEditComplete }) => {
 
     if (Object.keys(newError).length > 0) return;
 
-    dispatch(updateSong({ id, title, artist, img, audioUrl }));
+    // In handleSubmit
+    dispatch({ type: UPDATE_SONG_REQUEST, payload:{ id, title, artist, img, audioUrl } });
     if (onEditComplete) {
       onEditComplete();
     }
@@ -46,7 +47,7 @@ const EditSong = ({ onEditComplete }) => {
   };
 
   if (!song) {
-    return <p>Enter Id number of your music.</p>;
+    return <p>Enter Correct Id number of your music.</p>;
   }
 
   return (
