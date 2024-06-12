@@ -1,7 +1,7 @@
 // src/Pages/AddSong.js
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, } from 'react-router-dom';
 import { ADD_SONG_REQUEST } from '../features/songs/songsActionTypes'; // Import the ADD_SONG_REQUEST action type
 import { styles } from '../Components/Emotions';
 
@@ -14,6 +14,9 @@ const AddSong = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const refreshPage = () => {
+    navigate(0);
+  }
   const handleSubmit = (e) => {
     e.preventDefault();
     const newError = {}
@@ -38,8 +41,9 @@ const AddSong = () => {
     setImg('');
     setAudioUrl('');
     setError({});
-  
+
     navigate('/');
+    refreshPage();
   };
 
   return (
