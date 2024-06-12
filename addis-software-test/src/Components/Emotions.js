@@ -55,7 +55,7 @@ export const styles = {
     display: flex;
     flex-direction: column;
     max-width: 300px;
-    margin: 10px 0;
+    margin: 10px auto;
 
   `,
   
